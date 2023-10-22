@@ -44,6 +44,7 @@ input[type="text"]::placeholder {
      display: grid;
      align-items: center;
      justify-content: center;
+     display: none;
 }
 
 .temp {
@@ -60,6 +61,7 @@ input[type="text"]::placeholder {
      display: flex;
      align-items: center;
      justify-content: space-between;
+     display: none;
 }
 
 .humidity {
@@ -79,4 +81,12 @@ input[type="text"]::placeholder {
 h5 {
      font-weight: lighter;
      padding: 0 10px;
+}
+
+.error {
+     font-size: 13px;
+     padding-bottom: 10px;
+     padding-left: 25px;
+     font-weight: lighter;
+     display: none;
 }
