@@ -15,7 +15,7 @@ let invalid_city = document.querySelector(".error");
 async function checkWeather(city) {
      let res = await fetch(url + city + `&appid=${api_key}`);
      let data = await res.json();
-
+     console.log(data);
      if (res.status == 404) {
           invalid_city.style.display = "block";
           humidityAndWind.style.display = "none";
@@ -26,18 +26,26 @@ async function checkWeather(city) {
           humidity.innerHTML = data.main.humidity + "%";
           wind_speed.innerHTML = data.wind.speed + "km/h";
 
-          if (data.weather[0].main == "Clouds") {
-               image_weather.src = "/images/cloud.png";
-          } else if (data.weather[0].main == "Clear") {
-               image_weather.src = "/images/clear.png";
-          } else if (data.weather[0].main == "Rain") {
-               image_weather.src = "/images/Rain.png";
-          } else if (data.weather[0].main == "Drizzle") {
-               image_weather.src = "/images/drizzle.png";
-          } else if (data.weather[0].main == "Mist") {
-               image_weather.src = "/images/mist.png";
-          } else if (data.weather[0].main == "Snow") {
-               image_weather.src = "/images/snow.png";
+          switch (data.weather[0].main) {
+               case "Clouds":
+                    image_weather.src = "/images/cloud.png";
+                    break;
+               case "Clear":
+                    image_weather.src = "/images/clear.png";
+                    break;
+               case "Rain":
+                    image_weather.src = "/images/Rain.png";
+                    break;
+               case "Drizzle":
+                    image_weather.src = "/images/drizzle.png";
+                    break;
+               case "Mist":
+                    image_weather.src = "/images/mist.png";
+                    break;
+               case "Snow":
+                    image_weather.src = "/images/snow.png";
+               default:
+                    break;
           }
           city_weather.style.display = "grid";
           humidityAndWind.style.display = "flex";
@@ -46,3 +54,11 @@ async function checkWeather(city) {
 }
 
 searchBtn.addEventListener("click", () => checkWeather(searchBox.value));
+
+async function getData() {
+     let res = await fetch(url + "canada" + `&appid=${api_key}`);
+     let data = await res.json();
+     console.log(data);
+}
+
+getData();
